@@ -18,11 +18,11 @@ const connection = mongoose.connect(`URL`, {
 
 // Criando nosso modelo de usuário para o banco
 const userSchema = new mongoose.Schema({
-  name: String,
+  nome: String,
   email: String,
   idade: Number,
   matricula: Number,
-  password: String
+  senha: String
 });
 
 // Criando nossa entidade no banco
@@ -44,11 +44,11 @@ app.get('/user', async (req, res) => {
 app.post('/user', async (req, res) => {
 
   // Pegando os dados de dentro do body da requisição 
-  const { name, email, password } = req.body;
+  const { nome, email, idade, matricula, senha } = req.body;
 
   // Utilizando o async/await para esperar o banco de dados criar
   // um novo usuário    
-  const user = await User.create({ name, email, password });
+  const user = await User.create({ nome, email, idade, matricula, senha });
 
   // Retornando o usuário criado em formato JSON
   return res.json(user);
